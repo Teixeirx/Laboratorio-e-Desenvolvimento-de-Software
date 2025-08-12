@@ -4,6 +4,8 @@
  */
 package com.mycompany.exemploaula;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author laboratorio
@@ -16,8 +18,9 @@ public class Calculadora extends javax.swing.JFrame {
     public Calculadora() {
         initComponents();
     }
-    double valor1, valor2;
+    double valor1, valor2, resultado;
     String operacao;
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,10 +158,15 @@ public class Calculadora extends javax.swing.JFrame {
         btnPorcentagem.setText("%");
 
         btnCE.setText("CE");
+        btnCE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCEActionPerformed(evt);
+            }
+        });
 
         btnC.setText("C");
 
-        btnApagar.setText("X");
+        btnApagar.setText("<-");
         btnApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnApagarActionPerformed(evt);
@@ -194,15 +202,22 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btnResultado.setText("=");
+        btnResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResultadoActionPerformed(evt);
+            }
+        });
 
+        lblValor1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lblValor1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblValor1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -256,15 +271,15 @@ public class Calculadora extends javax.swing.JFrame {
                         .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtResultado)
                     .addComponent(lblValor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblValor1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblValor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPorcentagem)
@@ -313,10 +328,14 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void btnDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisaoActionPerformed
         lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "divisao";
     }//GEN-LAST:event_btnDivisaoActionPerformed
 
     private void btnVirgulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVirgulaActionPerformed
-        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + ",");
     }//GEN-LAST:event_btnVirgulaActionPerformed
 
     private void btnDoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoisActionPerformed
@@ -361,23 +380,71 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void btnAdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicaoActionPerformed
         lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "soma";
     }//GEN-LAST:event_btnAdicaoActionPerformed
 
     private void btnSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtracaoActionPerformed
         lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "subtracao";
     }//GEN-LAST:event_btnSubtracaoActionPerformed
 
     private void btnMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacaoActionPerformed
         lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "multiplicacao";
     }//GEN-LAST:event_btnMultiplicacaoActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        // TODO add your handling code here:
+        lblValor1.setText("");
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnRaizQuadradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaizQuadradaActionPerformed
         lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
     }//GEN-LAST:event_btnRaizQuadradaActionPerformed
+
+    private void btnCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCEActionPerformed
+        
+    }//GEN-LAST:event_btnCEActionPerformed
+
+    private void btnResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadoActionPerformed
+        valor2 = Double.parseDouble(txtResultado.getText());
+        
+        if ("soma".equals(operacao)){
+            resultado = valor1 + valor2;
+            lblValor1.setText (valor1+"+"+valor2+"="+resultado);
+            txtResultado.setText(String.valueOf(resultado));
+        }
+        else if ("subtracao".equals(operacao)){
+            resultado = valor1 - valor2;
+            lblValor1.setText   (valor1+"-"+valor2+"="+resultado);
+            txtResultado.setText(String.valueOf(resultado));
+        }
+        else if ("divisao".equals(operacao)){
+            resultado = valor1 / valor2;
+            lblValor1.setText   (valor1+"÷"+valor2+"="+resultado);
+            txtResultado.setText(String.valueOf(resultado));
+            if(valor2 == 0){
+                JOptionPane.showMessageDialog(null, "Impossivel dividir por zero!");
+            }
+        }
+        else if ("multiplicacao".equals(operacao)){
+            resultado = valor1 * valor2;
+            lblValor1.setText   (valor1+"*"+valor2+"="+resultado);
+            txtResultado.setText(String.valueOf(resultado));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Operacao invalida, tente novamente");
+        }
+    }//GEN-LAST:event_btnResultadoActionPerformed
 
     /**
      * @param args the command line arguments
