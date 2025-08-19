@@ -165,6 +165,11 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btnC.setText("C");
+        btnC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCActionPerformed(evt);
+            }
+        });
 
         btnApagar.setText("<-");
         btnApagar.addActionListener(new java.awt.event.ActionListener() {
@@ -403,7 +408,10 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMultiplicacaoActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        lblValor1.setText("");
+        String texto = txtResultado.getText();
+        if (texto.length() > 0) {
+            txtResultado.setText(texto.substring(0, texto.length() - 1));
+        }
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnRaizQuadradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaizQuadradaActionPerformed
@@ -412,7 +420,7 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRaizQuadradaActionPerformed
 
     private void btnCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCEActionPerformed
-        
+        txtResultado.setText("");
     }//GEN-LAST:event_btnCEActionPerformed
 
     private void btnResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadoActionPerformed
@@ -445,6 +453,15 @@ public class Calculadora extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Operacao invalida, tente novamente");
         }
     }//GEN-LAST:event_btnResultadoActionPerformed
+
+    private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
+        txtResultado.setText("");
+        lblValor1.setText("");
+        valor1 = 0;
+        valor2 = 0;
+        resultado = 0;
+        operacao = "";
+    }//GEN-LAST:event_btnCActionPerformed
 
     /**
      * @param args the command line arguments
